@@ -1,4 +1,4 @@
-Import-Module .\ExternalFunctions\functions.ps1
+Import-Module ./ExternalFunctions/functions.ps1
 $ifad = ADChecker
 if ($ifad){
 
