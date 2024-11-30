@@ -1,13 +1,6 @@
-function Checker{
-
-$moduleInfo = Get-Module | Select-Object -Property Name
-    if ($moduleInfo -match 'Activedirectory'){
-        return $true    
-}
-return $false
-
-}
-if (Checker){
+Import-Module .\ExternalFunctions\functions.ps1
+$ifad = ADChecker
+if ($ifad){
 
     Write-Output "Menu:`n    1.New User`n    2.New Group`n    3.Add User to group"
     $option =  Read-Host 'Active Directory turned on please describe what you need'
@@ -33,7 +26,7 @@ if (Checker){
         Write-Output $userCred.Name
 
 
-asdasdas
+
     }
 
 
