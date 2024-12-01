@@ -6,3 +6,14 @@ function ADChecker{
     return $false
     
     }
+function UserCheck{
+
+    $listUser = Get-ADUser -Filter * | Select-Object -Property UserPrincipalName
+    if ($listuser -eq $userCred.UserPrincipalName){
+        return $false
+    }
+    return $true
+
+
+
+}

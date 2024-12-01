@@ -6,24 +6,33 @@ if ($ifad){
     $option =  Read-Host 'Active Directory turned on please describe what you need'
    switch($option){
     1{
+        do{
         $firstName = Read-Host = "Please describe first name of your new user"
         $secName = Read-Host = "Please describe second name of your new user"
-        $password = Read-Host = "Set user's password:"
+        $password = Read-Host -AsSecureString =  "Set user's password:"
 
         $username = $firstName[0]+"."+$secName
-        $domain = Get-ADDomain | Select-Object -Property Name
+        $domain = 'poland-mail.net' #Get-ADDomain | Select-Object -Property Name
         Write-Output $domain
      #   Write-Output $username
         $userCred = @{
+            GivenName = $firstName
+            Surname = $secName
             Name = $firstName+" "+$secName
             AccountPassword = $password
             Enabled = $true
             SamAccountName = $username
-            ObjectClass = user
-
+           # ObjectClass = Users
+            UserPrincipalName = $username+"@"+$domain
 
         }
+    } while(UserCheck -eq $false)
         Write-Output $userCred.Name
+        Write-Output $userCred.UserPrincipalName
+        Write-Output $userCred.GivenName
+        Write-Output $userCred.Surname
+
+    
 
 
 
